@@ -12,26 +12,19 @@ namespace SportsStore
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)//Применяется для настройки служб
         {
+            services.AddControllersWithViews();//Настраивает совместно используемые объекты, требующиеся в приложениях, которые эксплуатируют MVC Framework механизм визуализации Razor
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.UseDeveloperExceptionPage();
+            app.UseStatusCodePages();//Добавляет простое сообщение в HTTP-ответы, которые иначе не имели бы тела(например 404-NOT Found)
+            app.UseStaticFiles();//Включает поддержку для обслуживания статического содержимого из папки wwwroot
+            app.UseRouting();//Добавляют средства маршрутизации
+            app.UseEndpoints(endpoints =>// для конечных точек
             {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapDefaultControllerRoute();//Региcтрация инфраструктуры MVC Framework как источника конечных точек
             });
         }
     }
