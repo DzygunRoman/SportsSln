@@ -34,6 +34,7 @@ namespace SportsStore
             app.UseRouting();//Добавляют средства маршрутизации
             app.UseEndpoints(endpoints =>// для конечных точек
             {
+                endpoints.MapControllerRoute("pagination", "Products/Page{productPage}", new { Controller = "Home", action = "Index" });
                 endpoints.MapDefaultControllerRoute();//Региcтрация инфраструктуры MVC Framework как источника конечных точек
             });
             //SeedData.EnsurePopulated(app);
