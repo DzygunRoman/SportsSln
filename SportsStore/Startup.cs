@@ -36,7 +36,7 @@ namespace SportsStore
             {
                 endpoints.MapDefaultControllerRoute();//Региcтрация инфраструктуры MVC Framework как источника конечных точек
             });
-            SeedData.EnsurePopulated(app);
+            //SeedData.EnsurePopulated(app);
         }
     }
 }
