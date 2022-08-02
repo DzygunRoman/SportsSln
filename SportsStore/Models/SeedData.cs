@@ -12,11 +12,11 @@ namespace SportsStore.Models
             StoreDbContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<StoreDbContext>();
             if (context.Database.GetPendingMigrations().Any())
             {
-                context.Database.Migrate();
+                context.Database.Migrate();//Создание базы данных и ее поготовка для хранения объектов Product
             }
             if (!context.Products.Any())
             {
-                context.Products.AddRange(
+                context.Products.AddRange(//Заполнение базы данных
                     new Product
                     {
                         Name = "Kayak",
@@ -72,7 +72,7 @@ namespace SportsStore.Models
                         Category = "Chess", Price = 1200
                     }
                 );
-                context.SaveChanges();
+                context.SaveChanges();//Сохранение в базе
             }
         }
     }
