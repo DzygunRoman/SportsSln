@@ -25,6 +25,7 @@ namespace SportsStore
             services.AddControllersWithViews();//Настраивает совместно используемые объекты, требующиеся в приложениях, которые эксплуатируют MVC Framework механизм визуализации Razor
             services.AddDbContext<StoreDbContext>(opts => { opts.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"]); });//Регистрирует класс контекста базы данных и конфигурирует связь с базой данных
             services.AddScoped<IStoreRepository, EFStoreRepository>();//Создает службу, в которой каждый HTTP-запрос получает собственный объект хранилища
+            services.AddRazorPages();//Включение инфраструктуры Razor Pages
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -39,6 +40,7 @@ namespace SportsStore
                 endpoints.MapControllerRoute("category", "{category}", new { Controller = "Home", action = "Index", productPage = 1 });
                 endpoints.MapControllerRoute("pagination", "Products/Page{productPage}", new { Controller = "Home", action = "Index", productPage = 1 });
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();//регистрирует Razor Pages в качестве конечной точки
             });
             //SeedData.EnsurePopulated(app);
         }
