@@ -28,7 +28,7 @@ namespace SportsStore.Models
         public decimal ComputeTotalValue() => Lines.Sum(e => e.Product.Price * e.Quantity);
         public void Clear()=>Lines.Clear();
     }
-    public class CartLine
+    public class CartLine//Товар выбранный пользователем
     {
         public int CartLineID { get; set; }
         public Product Product { get; set; }
