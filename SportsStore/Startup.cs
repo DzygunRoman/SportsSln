@@ -26,12 +26,15 @@ namespace SportsStore
             services.AddDbContext<StoreDbContext>(opts => { opts.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"]); });//Регистрирует класс контекста базы данных и конфигурирует связь с базой данных
             services.AddScoped<IStoreRepository, EFStoreRepository>();//Создает службу, в которой каждый HTTP-запрос получает собственный объект хранилища
             services.AddRazorPages();//Включение инфраструктуры Razor Pages
+            services.AddDistributedMemoryCache();//Настраивает хранилище данных в памяти
+            services.AddSession();//Регистрирует службы, используемые для доступа к данным сеанса
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();//Добавляет простое сообщение в HTTP-ответы, которые иначе не имели бы тела(например 404-NOT Found)
             app.UseStaticFiles();//Включает поддержку для обслуживания статического содержимого из папки wwwroot
+            app.UseSession();//позволяет системе сеансов автоматически ассоциировать запросы с сеансами, когда они поступают от клиента
             app.UseRouting();//Добавляют средства маршрутизации
             app.UseEndpoints(endpoints =>// для конечных точек
             {
