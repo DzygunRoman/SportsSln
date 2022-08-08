@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace SportsStore.Infrastructure
 {
-    public static class SessionExtensions
+    public static class SessionExtensions//сериализуетобъекты в формат JSON, облегчая сохранение и извлечение объектов Cart
     {
         public static void SetJson(this ISession session, string key, object value)
         {
