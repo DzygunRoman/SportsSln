@@ -28,6 +28,8 @@ namespace SportsStore
             services.AddRazorPages();//Включение инфраструктуры Razor Pages
             services.AddDistributedMemoryCache();//Настраивает хранилище данных в памяти
             services.AddSession();//Регистрирует службы, используемые для доступа к данным сеанса
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));//Для удовлетворения связанных запросов к экземплярам Cart будет применяться один и тот же объект
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
