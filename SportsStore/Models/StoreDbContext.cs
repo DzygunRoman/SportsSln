@@ -6,5 +6,6 @@ namespace SportsStore.Models
     {//класс StoreDbContext добавляет свойства, которые будут применятся для чтения и записи данных приложения
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options) { }
         public DbSet<Product> Products { get; set; }//Предоставляет доступ к объектам Product в базе данных
+        public DbSet<Order> Orders { get; set; }//возможность объектам Order сохраняться в базе данных
     }
 }
