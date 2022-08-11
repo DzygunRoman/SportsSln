@@ -25,6 +25,7 @@ namespace SportsStore
             services.AddControllersWithViews();//Настраивает совместно используемые объекты, требующиеся в приложениях, которые эксплуатируют MVC Framework механизм визуализации Razor
             services.AddDbContext<StoreDbContext>(opts => { opts.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"]); });//Регистрирует класс контекста базы данных и конфигурирует связь с базой данных
             services.AddScoped<IStoreRepository, EFStoreRepository>();//Создает службу, в которой каждый HTTP-запрос получает собственный объект хранилища
+            services.AddScoped<IOrderRepository, EFOrderRepository>();//Регистрация хранилища заказов как службы
             services.AddRazorPages();//Включение инфраструктуры Razor Pages
             services.AddDistributedMemoryCache();//Настраивает хранилище данных в памяти
             services.AddSession();//Регистрирует службы, используемые для доступа к данным сеанса
